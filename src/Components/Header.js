@@ -1,7 +1,6 @@
 import React from 'react';
 import P from './P';
 import H3 from './H3';
-import Button from './Button';
 import FlexContainer from './FlexContainer';
 
 const Header = props => (
