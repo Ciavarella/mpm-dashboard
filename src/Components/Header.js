@@ -1,16 +1,21 @@
-import React from 'react';
-import P from './P';
-import H3 from './H3';
-import FlexContainer from './FlexContainer';
+import React from 'react'
+import P from './P'
+import H3 from './H3'
+import FlexContainer from './FlexContainer'
+import { getToken } from '../Utils/Fetch.js'
 
-const Header = props => (
-  <FlexContainer flex='header'>
-    <H3 text='Music Per Minute' />
-    <P text='About' />
-    <a href='https://mpm-node-backend.herokuapp.com/auth/'>
-      Sign in with Spotify
-    </a>
-  </FlexContainer>
-);
+const Header = props => {
+  const fetchTokens = () => {
+    getToken()
+  }
 
-export default Header;
+  return (
+    <FlexContainer flex="header">
+      <H3 text="Music Per Minute" />
+      <P text="About" />
+      <button onClick={fetchTokens}>Sign in with Spotify</button>
+    </FlexContainer>
+  )
+}
+
+export default Header
