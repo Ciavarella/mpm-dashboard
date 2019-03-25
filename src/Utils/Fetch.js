@@ -1,6 +1,6 @@
 export const getToken = async () => {
   let response = await fetch(
-    'https://mpm-node-backend.herokuapp.com/dashboard/callback',
+    'https://mpm-node-backend.herokuapp.com/dashboard/',
     {
       method: 'GET'
     }
