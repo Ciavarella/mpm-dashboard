@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logoColorful from '../../Assets/logoColorful.svg';
-import './music.css';
+import '../../Styles/MusicVisualizer.css';
 
 let correctHeight = window.innerHeight - 400;
 
