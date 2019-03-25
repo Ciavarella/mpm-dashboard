@@ -3,9 +3,13 @@ export const getToken = async () => {
     'https://mpm-node-backend.herokuapp.com/dashboard/',
     {
       method: 'GET'
+    },
+    headers: {
+      'Content-Type': 'application/json'
     }
   );
-  let data = await response.json();
+
   console.log('response', response);
+  let data = await response.json();
   console.log('data', data);
 };
