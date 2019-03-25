@@ -2,10 +2,10 @@ export const getToken = async () => {
   let response = await fetch(
     'https://mpm-node-backend.herokuapp.com/dashboard/',
     {
-      method: 'GET'
-    },
-    headers: {
-      'Content-Type': 'application/json'
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
     }
   );
 
