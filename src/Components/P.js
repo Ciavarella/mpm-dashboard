@@ -1,5 +1,5 @@
-import React from 'react';
+import React from 'react'
 
-const P = props => <p>{props.text}</p>;
+const P = props => <p>{props.text}</p>
 
-export default P;
+export default P

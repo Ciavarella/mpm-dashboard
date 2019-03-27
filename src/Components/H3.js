@@ -1,5 +1,5 @@
-import React from 'react';
+import React from 'react'
 
-const H3 = props => <h3>{props.text}</h3>;
+const H3 = props => <h3>{props.text}</h3>
 
-export default H3;
+export default H3

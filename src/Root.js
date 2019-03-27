@@ -1,15 +1,15 @@
-import App from './App';
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import App from './App'
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 const Root = () => (
   <React.Fragment>
     <Router>
       <Switch>
-        <Route path='/' component={App} />
+        <Route path="/" component={App} />
       </Switch>
     </Router>
   </React.Fragment>
-);
+)
 
-export default Root;
+export default Root

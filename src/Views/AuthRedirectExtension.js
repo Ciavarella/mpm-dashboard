@@ -5,7 +5,7 @@ import '../Styles/AuthRedirect.css'
 /**
  * Takes the url and slices it to get tokens.
  */
-const AuthRedirect = () => {
+const AuthRedirectExtension = () => {
   const textInputRef = useRef(null)
   const params = window.location.search
   const token = params.slice(14)
@@ -34,4 +34,4 @@ const AuthRedirect = () => {
   )
 }
 
-export default AuthRedirect
+export default AuthRedirectExtension
