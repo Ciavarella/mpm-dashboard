@@ -1,7 +1,4 @@
 import React from 'react'
-import P from './P'
-import H3 from './H3'
-import FlexContainer from './FlexContainer'
 
 const signin_uri =
   process.env.NODE_ENV === 'development'
@@ -10,11 +7,15 @@ const signin_uri =
 
 const Header = props => {
   return (
-    <FlexContainer flex="header">
-      <H3 text="Music Per Minute" />
-      <P text="About" />
-      <a href={signin_uri}>Sign in with Spotify</a>
-    </FlexContainer>
+    <div className="header">
+      <h3>Music Per Minute</h3>
+      <p>About</p>
+      {!props.username ? (
+        <a href={signin_uri}>Sign in with Spotify</a>
+      ) : (
+        <p>{props.username}</p>
+      )}
+    </div>
   )
 }
 

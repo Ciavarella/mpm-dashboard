@@ -84,10 +84,6 @@ p {
   margin-bottom: 1.2rem;
 }
 
-p:last-child {
-  margin-bottom: 0;
-}
-
 .start-page {
   width: 100%;
 }
