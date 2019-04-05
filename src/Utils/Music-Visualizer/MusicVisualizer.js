@@ -1,26 +1,28 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../Styles/MusicVisualizer.css'
 
 let correctHeight = window.innerHeight - 400
 let targetNode = document.getElementById('body')
 const config = { attributes: true }
 
-let fillStyleColor = '#fff'
+let fillStyleColor =
+  localStorage.getItem('mode') === 'dark' ? '#1b1c21' : '#fff'
 
-const callback = (mutationsList, observer) => {
-  for (const mutation of mutationsList) {
-    if (mutation.target.className == '') {
-      fillStyleColor = '#fff'
-    } else {
-      fillStyleColor = '#1b1c21'
+const MusicVisualizer = () => {
+  const [showFile, toggleFileUpload] = useState(true)
+  useEffect(() => {
+    const callback = (mutationsList, observer) => {
+      for (const mutation of mutationsList) {
+        if (mutation.target.className === '') {
+          fillStyleColor = '#fff'
+        } else {
+          fillStyleColor = '#1b1c21'
+        }
+      }
     }
-  }
-}
-
-class MusicVisualizer extends Component {
-  componentDidMount() {
     let observer = new MutationObserver(callback)
     observer.observe(targetNode, config)
+
     let file = document.querySelector('#file')
     let audio = document.querySelector('#audio')
 
@@ -49,7 +51,7 @@ class MusicVisualizer extends Component {
       let barHeight
       let x = 0
 
-      function renderFrame() {
+      const renderFrame = () => {
         requestAnimationFrame(renderFrame)
         x = 0
         analyser.getByteFrequencyData(dataArray)
@@ -77,20 +79,27 @@ class MusicVisualizer extends Component {
       }
       audio.play()
       renderFrame()
+      toggleFileUpload(false)
     }
-  }
-  render() {
-    return (
-      <div id="content">
-        <div className="logo-container">
-          <div id="logo" />
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
+
+  return (
+    <div id="content">
+      <div className="logo-container">
+        <div id="logo" />
+        {showFile ? (
           <input type="file" id="file" className="file" accept="audio/*" />
-        </div>
-        <canvas id="canvas" />
-        <audio id="audio" controls />
+        ) : (
+          ''
+        )}
       </div>
-    )
-  }
+      <canvas id="canvas" />
+      <audio id="audio" controls />
+    </div>
+  )
 }
 
 export default MusicVisualizer
