@@ -3,8 +3,8 @@ import { PieChart, Pie, Cell } from 'recharts'
 
 let chartColors =
   localStorage.getItem('mode') === 'dark'
-    ? (chartColors = ['#18d03a', '#c31623'])
-    : (chartColors = ['#B749A7', '#6E5AAD'])
+    ? ['#18d03a', '#c31623']
+    : ['#B749A7', '#6E5AAD']
 
 let targetNode = document.getElementById('body')
 const config = { attributes: true }
@@ -13,7 +13,7 @@ const Chart = props => {
   useEffect(() => {
     const callback = (mutationsList, observer) => {
       for (const mutation of mutationsList) {
-        if (mutation.target.className == '') {
+        if (mutation.target.className === '') {
           chartColors = ['#B749A7', '#6E5AAD']
         } else {
           chartColors = ['#18d03a', '#c31623']
@@ -22,6 +22,9 @@ const Chart = props => {
     }
     let observer = new MutationObserver(callback)
     observer.observe(targetNode, config)
+    return () => {
+      observer.disconnect()
+    }
   }, [])
 
   return (
