@@ -1,5 +1,3 @@
-import React from 'react'
-
 const api = async (path, ...args) => {
   const baseUrl =
     process.env.NODE_ENV === 'development'
