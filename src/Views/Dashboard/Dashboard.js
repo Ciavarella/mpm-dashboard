@@ -5,6 +5,7 @@ import Header from '../../Components/Header'
 import api from '../../Utils/api'
 import '../../Styles/Dashboard.css'
 import Chart from '../../Components/Chart'
+import TotalChart from '../../Components/TotalChart'
 
 /**
  * View when user is signed in.
@@ -12,6 +13,7 @@ import Chart from '../../Components/Chart'
 const Dashboard = () => {
   const { user } = useContext(AuthContext)
   const [sessions, setData] = useState([])
+  const [totalData, setTotalData] = useState([])
 
   /**
    * Fetch data from the signed in user
@@ -37,10 +39,33 @@ const Dashboard = () => {
         session.chartData = chartData
         session.totalTime = convertedTotalTime
         session.musicTime = convertedMusicTime
+        return null
       })
       setData(sessions)
     }
+
+    //
+    const fetchTotalData = async () => {
+      let res = await api(`/extension/total/${user.id}`)
+      let data = await res.json()
+
+      const totalChartData = [
+        {
+          name: 'Played',
+          value: +data.musicTimeSum
+        },
+        {
+          name: 'Not Played',
+          value: data.totalTimeSum - data.musicTimeSum
+        }
+      ]
+
+      setTotalData(totalChartData)
+      return null
+    }
+
     fetchData()
+    fetchTotalData()
   }, [])
 
   /**
@@ -62,6 +87,7 @@ const Dashboard = () => {
     <div className="signedInContainer">
       <Header username={user.username} />
       <div className="sessionContainer">
+        <TotalChart data={totalData} />
         {sessions.map(session => (
           <div key={session.id} className="sessionCard">
             <p>{new Date(session.createdAt).toDateString()}</p>
