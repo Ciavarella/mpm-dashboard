@@ -28,7 +28,7 @@ body.dark .sessionCard {
 
 .sessionCard {
   background-color: antiquewhite;
-  width: 50%;
+  width: 40%;
   margin: 1rem;
   display: flex;
   align-items: center;
