@@ -3,10 +3,17 @@ import { Redirect, Route } from 'react-router-dom'
 import { AuthContext } from './AuthContext'
 import Loader from '../Components/Loader'
 
+/**
+ * Method that just sets a timeout to show a loader.
+ */
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
+/**
+ * Private routes, the user needs to be signed in to be able to
+ * see go to the specific route.
+ */
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const [isLoading, toggleLoading] = useState(true)
   const { isAuth, signin } = useContext(AuthContext)

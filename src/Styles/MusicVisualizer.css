@@ -2,6 +2,11 @@
   width: 100%;
   bottom: 0;
   position: fixed;
+  background-color: #fff;
+}
+
+body.dark #audio {
+  background-color: #141419;
 }
 
 #canvas {
@@ -17,6 +22,15 @@
   justify-content: center;
   position: relative;
   align-items: center;
+}
+
+body.dark #content {
+  background-color: #1b1c21;
+}
+
+body.dark .logo-container {
+  background-color: #141419;
+  border: 1px solid #1b1c21;
 }
 
 .logo-container {
@@ -40,11 +54,29 @@
   opacity: 0.9;
 }
 
-#file {
+.file {
+  color: #000;
   margin-left: 9rem;
 }
 
+body.dark .file {
+  color: #1db954;
+}
+
 #logo {
+  background: url('../Assets/logoColorful.svg') center center no-repeat;
+  display: block;
+  background-size: 28rem;
   height: 28rem;
+  width: 28rem;
+  margin-bottom: 3rem;
+}
+
+body.dark #logo {
+  background: url('../Assets/logoNeon.svg') center center no-repeat;
+  display: block;
+  background-size: 28rem;
+  height: 28rem;
+  width: 28rem;
   margin-bottom: 3rem;
 }

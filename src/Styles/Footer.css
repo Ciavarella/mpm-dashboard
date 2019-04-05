@@ -2,5 +2,10 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  background-color: #a65ab0;
+  background-color: #b749a7;
+}
+
+body.dark .footer {
+  background-color: #141419;
+  color: #1db954;
 }

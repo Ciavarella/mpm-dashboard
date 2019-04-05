@@ -11,10 +11,32 @@ const Header = props => {
       <h3>Music Per Minute</h3>
       <p>About</p>
       {!props.username ? (
-        <a href={signin_uri}>Sign in with Spotify</a>
+        <a className="link" href={signin_uri}>
+          Sign in with Spotify
+        </a>
       ) : (
         <p>{props.username}</p>
       )}
+      <p>
+        <a
+          href="#"
+          className="link"
+          onClick={() => {
+            localStorage.setItem(
+              'mode',
+              (localStorage.getItem('mode') || 'dark') === 'dark'
+                ? 'light'
+                : 'dark'
+            )
+            localStorage.getItem('mode') === 'dark'
+              ? document.querySelector('body').classList.add('dark')
+              : document.querySelector('body').classList.remove('dark')
+          }}
+          title="Dark/light"
+        >
+          Dark/Light
+        </a>
+      </p>
     </div>
   )
 }

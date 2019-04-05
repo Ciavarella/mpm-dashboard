@@ -99,10 +99,24 @@ p {
   justify-content: space-around;
   align-items: center;
   min-height: 53px;
-  background-color: #a65ab0;
+  background-color: #b749a7;
 }
 
-a {
+body.dark .header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 53px;
+  background-color: #141419;
+  color: #1db954;
+}
+
+.link {
   text-decoration: none;
   color: #000;
+}
+
+body.dark .link {
+  text-decoration: none;
+  color: #1db954;
 }

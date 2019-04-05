@@ -6,10 +6,24 @@
   height: 100%;
 }
 
+body.dark .signedInContainer {
+  background-color: #1b1c21;
+}
+
 .sessionContainer {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+body.dark .sessionContainer {
+  background-color: #1b1c21;
+}
+
+body.dark .sessionCard {
+  background-color: #141419;
+  border: 1px solid #1b1c21;
+  color: #1db954;
 }
 
 .sessionCard {

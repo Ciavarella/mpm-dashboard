@@ -1,11 +1,26 @@
 import React, { Component } from 'react'
-import logoColorful from '../../Assets/logoColorful.svg'
 import '../../Styles/MusicVisualizer.css'
 
 let correctHeight = window.innerHeight - 400
+let targetNode = document.getElementById('body')
+const config = { attributes: true }
+
+let fillStyleColor = '#fff'
+
+const callback = (mutationsList, observer) => {
+  for (const mutation of mutationsList) {
+    if (mutation.target.className == '') {
+      fillStyleColor = '#fff'
+    } else {
+      fillStyleColor = '#1b1c21'
+    }
+  }
+}
 
 class MusicVisualizer extends Component {
   componentDidMount() {
+    let observer = new MutationObserver(callback)
+    observer.observe(targetNode, config)
     let file = document.querySelector('#file')
     let audio = document.querySelector('#audio')
 
@@ -38,14 +53,23 @@ class MusicVisualizer extends Component {
         requestAnimationFrame(renderFrame)
         x = 0
         analyser.getByteFrequencyData(dataArray)
-        ctx.fillStyle = '#fff'
+        ctx.fillStyle = fillStyleColor
         ctx.fillRect(0, 0, WIDTH, HEIGHT)
-
         for (let i = 0; i < bufferLength; i++) {
           barHeight = dataArray[i]
-          let r = barHeight + 25 * (i / bufferLength)
-          let g = 5 * (i / bufferLength)
-          let b = 177
+          let r = 0
+          let g = 0
+          let b = 0
+          if (fillStyleColor === '#fff') {
+            r = barHeight + 25 * (i / bufferLength)
+            g = 5 * (i / bufferLength)
+            b = 177
+          } else {
+            r = 5 * (i / bufferLength)
+            g = barHeight + 150 * (i / bufferLength)
+            b = 50
+          }
+
           ctx.fillStyle = 'rgb(' + r + ',' + g + ',' + b + ')'
           ctx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight)
           x += barWidth + 1
@@ -59,8 +83,8 @@ class MusicVisualizer extends Component {
     return (
       <div id="content">
         <div className="logo-container">
-          <img src={logoColorful} alt="Logo" id="logo" />
-          <input type="file" id="file" accept="audio/*" />
+          <div id="logo" />
+          <input type="file" id="file" className="file" accept="audio/*" />
         </div>
         <canvas id="canvas" />
         <audio id="audio" controls />
