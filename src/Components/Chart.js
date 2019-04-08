@@ -35,7 +35,8 @@ const Chart = props => {
         endAngle={0}
         data={props.data}
         cx={200}
-        cy={200}
+        cy={150}
+        innerRadius={50}
         outerRadius={100}
         fill="#8884d8"
         label={({ cx, cy, midAngle, innerRadius, outerRadius, index }) => {

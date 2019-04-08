@@ -14,6 +14,7 @@ const Dashboard = () => {
   const { user } = useContext(AuthContext)
   const [sessions, setData] = useState([])
   const [totalData, setTotalData] = useState([])
+  const [totalSum, setTotalSum] = useState({})
 
   /**
    * Fetch data from the signed in user
@@ -29,12 +30,12 @@ const Dashboard = () => {
         let chartData = [
           {
             name: 'Played',
-            value: session.musicTime
+            value: session.musicTime,
           },
           {
             name: 'Not Played',
-            value: session.totalTime - session.musicTime
-          }
+            value: session.totalTime - session.musicTime,
+          },
         ]
         session.chartData = chartData
         session.totalTime = convertedTotalTime
@@ -48,19 +49,31 @@ const Dashboard = () => {
     const fetchTotalData = async () => {
       let res = await api(`/extension/total/${user.id}`)
       let data = await res.json()
-
+      let convertedPlayedSum = convertTime(data.musicTimeSum)
+      let convertedTotal = convertTime(data.totalTimeSum)
+      let convertedNotPlayed = convertTime(
+        data.totalTimeSum - data.musicTimeSum
+      )
       const totalChartData = [
         {
           name: 'Played',
-          value: +data.musicTimeSum
+          value: +data.musicTimeSum,
         },
         {
           name: 'Not Played',
-          value: data.totalTimeSum - data.musicTimeSum
-        }
+          value: data.totalTimeSum - data.musicTimeSum,
+        },
       ]
 
+      const dash = {
+        sumPlayed: convertedPlayedSum,
+        sumNotPlayed: convertedNotPlayed,
+        sumTotal: convertedTotal,
+        sumPaused: data.pausedTimesSum,
+      }
+
       setTotalData(totalChartData)
+      setTotalSum(dash)
       return null
     }
 
@@ -79,7 +92,7 @@ const Dashboard = () => {
     return {
       hours,
       minutes,
-      seconds
+      seconds,
     }
   }
 
@@ -87,7 +100,45 @@ const Dashboard = () => {
     <div className="signedInContainer">
       <Header username={user.username} />
       <div className="sessionContainer">
-        <TotalChart data={totalData} />
+        <div className="totalSessionCard">
+          <p>Total</p>
+          <TotalChart data={totalData} />
+          {totalSum.sumTotal === undefined ? (
+            ''
+          ) : (
+            <div className="sessionTime">
+              <p>Total time:</p>
+              <p>{totalSum.sumTotal.hours} hours</p>
+              <p>{totalSum.sumTotal.minutes} minutes</p>
+              <p>{totalSum.sumTotal.seonds} seseconds</p>
+            </div>
+          )}
+          {totalSum.sumPlayed === undefined ? (
+            ''
+          ) : (
+            <div className="sessionTime">
+              <p>Total played time:</p>
+              <p>{totalSum.sumPlayed.hours} hours</p>
+              <p>{totalSum.sumPlayed.minutes} minutes</p>
+              <p>{totalSum.sumPlayed.seconds} seconds</p>
+            </div>
+          )}
+          {totalSum.sumNotPlayed === undefined ? (
+            ''
+          ) : (
+            <div className="sessionTime">
+              <p>Total not played:</p>
+              <p>{totalSum.sumNotPlayed.hours} hours</p>
+              <p>{totalSum.sumNotPlayed.minutes} minutes</p>
+              <p>{totalSum.sumNotPlayed.seconds} seconds</p>
+            </div>
+          )}
+          {totalSum.sumPaused === undefined ? (
+            ''
+          ) : (
+            <p>Paused times: {totalSum.sumPaused}</p>
+          )}
+        </div>
         {sessions.map(session => (
           <div key={session.id} className="sessionCard">
             <p>{new Date(session.createdAt).toDateString()}</p>
