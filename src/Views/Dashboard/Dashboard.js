@@ -101,7 +101,7 @@ const Dashboard = () => {
       <Header username={user.username} />
       <div className="sessionContainer">
         <div className="totalSessionCard">
-          <p>Total</p>
+          <h3>Total</h3>
           <TotalChart data={totalData} />
           {totalSum.sumTotal === undefined ? (
             ''
@@ -110,7 +110,7 @@ const Dashboard = () => {
               <p>Total time:</p>
               <p>{totalSum.sumTotal.hours} hours</p>
               <p>{totalSum.sumTotal.minutes} minutes</p>
-              <p>{totalSum.sumTotal.seonds} seseconds</p>
+              <p>{totalSum.sumTotal.seconds} seconds</p>
             </div>
           )}
           {totalSum.sumPlayed === undefined ? (
