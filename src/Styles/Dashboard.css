@@ -26,6 +26,12 @@ body.dark .sessionCard {
   color: #1db954;
 }
 
+.total {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 .sessionCard {
   background-color: antiquewhite;
   width: 40%;

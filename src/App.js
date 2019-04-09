@@ -8,6 +8,7 @@ import Dashboard from './Views/Dashboard/Dashboard'
 import NotFound from './Views/NotFound.js'
 import { AuthProvider } from './Auth/AuthContext'
 import PrivateRoute from './Auth/PrivateRoute'
+import Settings from './Views/Dashboard/Settings'
 
 class App extends Component {
   render() {
@@ -24,6 +25,7 @@ class App extends Component {
             />
             <Route exact path="/auth/login" component={AuthLogin} />
             <PrivateRoute path="/dashboard" component={Dashboard} />
+            <PrivateRoute exact path="/settings" component={Settings} />
             <Route path="/*" component={NotFound} />
           </Switch>
         </Router>

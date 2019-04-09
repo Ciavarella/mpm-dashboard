@@ -1,0 +1,66 @@
+.settingsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+body.dark .settingsContainer {
+  background-color: #1b1c21;
+}
+
+.settingsCard {
+  background-color: antiquewhite;
+  width: 40%;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  border: 1px solid #e6e6e6;
+}
+
+.form {
+  display: flex;
+  margin: 4rem;
+}
+
+.keyPress {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem;
+}
+
+.hardMode {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem;
+}
+
+body.dark .settingsCard {
+  background-color: #141419;
+  border: 1px solid #1b1c21;
+  color: #1db954;
+}
+
+.settingsBtn {
+  margin-bottom: 4rem;
+  border: 1px solid #e6e6e6;
+  width: 50%;
+  font-size: 18px;
+}
+
+body.dark .settingsBtn {
+  background-color: #141419;
+  color: #1db954;
+  border: 1px solid #1db954;
+}

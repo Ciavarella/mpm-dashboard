@@ -22,7 +22,7 @@ const Dashboard = () => {
    */
   useEffect(() => {
     const fetchData = async () => {
-      const res = await api(`/extension/${user.id}`)
+      const res = await api(`/dashboard/${user.id}`)
       const sessions = await res.json()
       sessions.map(session => {
         let convertedTotalTime = convertTime(session.totalTime)
@@ -30,12 +30,12 @@ const Dashboard = () => {
         let chartData = [
           {
             name: 'Played',
-            value: session.musicTime,
+            value: session.musicTime
           },
           {
             name: 'Not Played',
-            value: session.totalTime - session.musicTime,
-          },
+            value: session.totalTime - session.musicTime
+          }
         ]
         session.chartData = chartData
         session.totalTime = convertedTotalTime
@@ -47,33 +47,41 @@ const Dashboard = () => {
 
     //
     const fetchTotalData = async () => {
-      let res = await api(`/extension/total/${user.id}`)
+      let res = await api(`/dashboard/total/${user.id}`)
       let data = await res.json()
-      let convertedPlayedSum = convertTime(data.musicTimeSum)
-      let convertedTotal = convertTime(data.totalTimeSum)
-      let convertedNotPlayed = convertTime(
-        data.totalTimeSum - data.musicTimeSum
-      )
-      const totalChartData = [
-        {
-          name: 'Played',
-          value: +data.musicTimeSum,
-        },
-        {
-          name: 'Not Played',
-          value: data.totalTimeSum - data.musicTimeSum,
-        },
-      ]
+      if (
+        data.musicTimeSum === null &&
+        data.pausedTimesSum === null &&
+        data.totalTimeSum === null
+      ) {
+        return
+      } else {
+        let convertedPlayedSum = convertTime(data.musicTimeSum)
+        let convertedTotal = convertTime(data.totalTimeSum)
+        let convertedNotPlayed = convertTime(
+          data.totalTimeSum - data.musicTimeSum
+        )
+        const totalChartData = [
+          {
+            name: 'Played',
+            value: +data.musicTimeSum
+          },
+          {
+            name: 'Not Played',
+            value: data.totalTimeSum - data.musicTimeSum
+          }
+        ]
 
-      const dash = {
-        sumPlayed: convertedPlayedSum,
-        sumNotPlayed: convertedNotPlayed,
-        sumTotal: convertedTotal,
-        sumPaused: data.pausedTimesSum,
+        const dash = {
+          sumPlayed: convertedPlayedSum,
+          sumNotPlayed: convertedNotPlayed,
+          sumTotal: convertedTotal,
+          sumPaused: data.pausedTimesSum
+        }
+
+        setTotalData(totalChartData)
+        setTotalSum(dash)
       }
-
-      setTotalData(totalChartData)
-      setTotalSum(dash)
       return null
     }
 
@@ -92,7 +100,7 @@ const Dashboard = () => {
     return {
       hours,
       minutes,
-      seconds,
+      seconds
     }
   }
 
@@ -101,8 +109,14 @@ const Dashboard = () => {
       <Header username={user.username} />
       <div className="sessionContainer">
         <div className="totalSessionCard">
-          <h3>Total</h3>
-          <TotalChart data={totalData} />
+          {totalData.length === 0 ? (
+            <p>No sessions yet!</p>
+          ) : (
+            <div className="total">
+              <h3>Total</h3>
+              <TotalChart data={totalData} />
+            </div>
+          )}
           {totalSum.sumTotal === undefined ? (
             ''
           ) : (
