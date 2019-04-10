@@ -38,6 +38,8 @@ const Settings = () => {
       .then(res => res.json())
       .then(data => {
         const { keypress, hardcore } = data[1][0].settings
+        setKeyValue(keypress)
+        setHardMode(hardcore)
       })
   }
 
@@ -52,7 +54,7 @@ const Settings = () => {
               type="number"
               name="keypress"
               className="keypress"
-              placeholder="Set value"
+              placeholder="Set Value"
               onChange={setPressValue}
             />
           </div>
