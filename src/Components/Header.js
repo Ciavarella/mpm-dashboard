@@ -6,8 +6,6 @@ const signin_uri =
     : 'https://mpm-node-backend.herokuapp.com/dashboard'
 
 const Header = props => {
-  console.log('singin', signin_uri)
-
   return (
     <div className="header">
       <h3>Music Per Minute</h3>
