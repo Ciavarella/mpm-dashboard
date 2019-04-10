@@ -27,7 +27,16 @@ body.dark .settingsContainer {
 
 .form {
   display: flex;
-  margin: 4rem;
+  margin: 2rem;
+}
+
+.keypress {
+  border-radius: 4px;
+  text-align: center;
+}
+
+button {
+  border-radius: 2px;
 }
 
 .keyPress {

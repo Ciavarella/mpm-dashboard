@@ -49,9 +49,10 @@ const Settings = () => {
           <div className="keyPress">
             <p>Seconds / Keypress</p>
             <input
-              type="text"
+              type="number"
               name="keypress"
-              placeholder="Keypress"
+              className="keypress"
+              placeholder="Set value"
               onChange={setPressValue}
             />
           </div>
