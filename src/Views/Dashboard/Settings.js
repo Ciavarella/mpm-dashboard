@@ -15,8 +15,8 @@ const Settings = () => {
   const [hardModeValue, setHardMode] = useState(false)
 
   const setPressValue = e => {
-    let data = e.target.value
-    setKeyValue(data)
+    let value = JSON.parse(e.target.value)
+    setKeyValue(value)
   }
 
   const setHardModeValue = e => {
@@ -28,12 +28,12 @@ const Settings = () => {
   const saveSettings = async () => {
     const values = {
       keypress: keyValue,
-      hardcore: hardModeValue
+      hardcore: hardModeValue,
     }
     fetch(`${baseUrl}/dashboard/settings/${user.id}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(values)
+      body: JSON.stringify(values),
     })
       .then(res => res.json())
       .then(data => {
