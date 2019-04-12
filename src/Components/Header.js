@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { AuthContext } from '../Auth/AuthContext'
 
 const signin_uri =
   process.env.NODE_ENV === 'development'
@@ -6,16 +7,35 @@ const signin_uri =
     : 'https://mpm-node-backend.herokuapp.com/dashboard'
 
 const Header = props => {
+  const { signout } = useContext(AuthContext)
+  const token = localStorage.getItem('token')
+
+  const signOut = () => {
+    signout(token)
+    props.history.push('/')
+  }
+
   return (
     <div className="header">
-      <h3>Music Per Minute</h3>
+      <a href="/" className="title" onClick={signOut}>
+        Music Per Minute
+      </a>
       <p>About</p>
       {!props.username ? (
         <a className="link" href={signin_uri}>
           Sign in with Spotify
         </a>
       ) : (
-        <p>{props.username}</p>
+        <a className="link" href="/dashboard">
+          {props.username}
+        </a>
+      )}
+      {!props.username ? (
+        ''
+      ) : (
+        <a className="link" href="/settings">
+          Settings
+        </a>
       )}
       <p>
         <a

@@ -121,3 +121,16 @@ body.dark .link {
   text-decoration: none;
   color: #1db954;
 }
+
+.title {
+  font-size: 1.8rem;
+  /* 18px */
+  line-height: 1.2;
+  font-weight: 500;
+  text-decoration: none;
+  color: #000;
+}
+
+body.dark .title {
+  color: #1db954;
+}
