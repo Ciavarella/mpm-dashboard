@@ -108,6 +108,7 @@ const Dashboard = () => {
     <div className="signedInContainer">
       <Header username={user.username} />
       <div className="sessionContainer">
+        <h3 className="user">Welcome {user.username}</h3>
         <div className="totalSessionCard">
           {totalData.length === 0 ? (
             <p>No sessions yet!</p>

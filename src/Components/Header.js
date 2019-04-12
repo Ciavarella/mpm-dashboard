@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import { AuthContext } from '../Auth/AuthContext'
 
 const signin_uri =
@@ -12,30 +13,42 @@ const Header = props => {
 
   const signOut = () => {
     signout(token)
-    props.history.push('/')
   }
 
   return (
     <div className="header">
-      <a href="/" className="title" onClick={signOut}>
+      <Link className="title" to="/" onClick={signOut}>
         Music Per Minute
-      </a>
-      <p>About</p>
+      </Link>
+      {!props.username ? (
+        <Link className="link" to="/about">
+          About
+        </Link>
+      ) : (
+        ''
+      )}
       {!props.username ? (
         <a className="link" href={signin_uri}>
           Sign in with Spotify
         </a>
       ) : (
-        <a className="link" href="/dashboard">
-          {props.username}
+        <a className="link" href="/settings">
+          Settings
         </a>
       )}
       {!props.username ? (
         ''
       ) : (
-        <a className="link" href="/settings">
-          Settings
+        <a className="link" href="/dashboard">
+          Dashboard
         </a>
+      )}
+      {!props.username ? (
+        ''
+      ) : (
+        <Link to="/" className="link" onClick={signOut}>
+          Sign Out
+        </Link>
       )}
       <p>
         <a

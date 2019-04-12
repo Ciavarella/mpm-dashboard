@@ -20,6 +20,14 @@ body.dark .sessionContainer {
   background-color: #1b1c21;
 }
 
+.user {
+  color: #000;
+}
+
+body.dark .user {
+  color: #1db953;
+}
+
 body.dark .sessionCard {
   background-color: #141419;
   border: 1px solid #1b1c21;
