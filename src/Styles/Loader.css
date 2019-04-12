@@ -6,6 +6,10 @@
   align-items: center;
 }
 
+body.dark .loader-container {
+  background-color: #1b1c21;
+}
+
 .loader {
   border-radius: 50%;
   border-top: 5px solid #555;
@@ -13,6 +17,10 @@
   height: 5rem;
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 1s linear infinite;
+}
+
+body.dark .loader {
+  border-top: 5px solid #1db954;
 }
 
 /* Safari */
