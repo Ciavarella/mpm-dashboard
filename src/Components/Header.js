@@ -21,13 +21,6 @@ const Header = props => {
         Music Per Minute
       </Link>
       {!props.username ? (
-        <Link className="link" to="/about">
-          About
-        </Link>
-      ) : (
-        ''
-      )}
-      {!props.username ? (
         <a className="link" href={signin_uri}>
           Sign in with Spotify
         </a>

@@ -15,6 +15,32 @@ body.dark #audio {
   margin-bottom: 5.5rem;
 }
 
+body.dark h3 {
+  color: #1db954;
+}
+
+.about {
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.about .aboutTitle h1 {
+  font-size: 86px;
+  font-weight: 700;
+  margin: 0px;
+}
+
+body.dark .about .aboutTitle h1 {
+  color: #1db954;
+}
+
+.about p {
+  color: #787878;
+  font-weight: 300;
+}
+
 #content {
   height: 92%;
   display: flex;
@@ -40,7 +66,7 @@ body.dark .logo-container {
   justify-content: center;
   -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-  width: 350px;
+  width: 90%;
   background-color: #ffffff;
   border: 1px solid #e6e6e6;
   margin: 0 auto;
@@ -52,6 +78,16 @@ body.dark .logo-container {
   z-index: 1;
   top: 0;
   opacity: 0.9;
+}
+
+.mp3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body.dark .mp3 {
+  color: #787878;
 }
 
 .file {
