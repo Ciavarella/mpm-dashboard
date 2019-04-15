@@ -2,6 +2,8 @@
 
 This dashboard is an extra feature to the Music Per Minute for VSCode. You can sign in with your Spotify account and change your settings for the extension or you can watch a summary of your sessions using the extension.
 
+The application is deployed at: [https://ciavarella.dev](https://ciavarella.dev)
+
 ---
 
 #### `Routes`
